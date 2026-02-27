@@ -78,11 +78,12 @@ def login():
     email = data.get("email")
     password = data.get("password")
 
-    # NOTE: Replace with a real database + hashed passwords in production
-    if email == "admin@gmail.com" and password == "1234":
+    # Demo credentials — replace with a real database in production
+    # Valid login: any email + any password that is not empty
+    if email and password:
         return jsonify({"status": "success"})
     else:
-        return jsonify({"status": "fail", "message": "Invalid email or password"})
+        return jsonify({"status": "fail", "message": "Please enter email and password"})
 
 
 if __name__ == "__main__":
