@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PhishShield – Phishing URL Detection</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background-color: #121626;
+            /* Dark blue background */
+            min-height: 100vh;
+            color: #ffffff;
+            overflow-x: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* ── Nav ─────────────────────────────────── */
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 24px 60px;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: white;
+            letter-spacing: 1px;
+        }
+
+        .logo span {
+            color: #3b82f6;
+        }
+
+        .nav-buttons {
+            display: flex;
+            gap: 16px;
+        }
+
+        .btn-login,
+        .btn-signup {
+            padding: 8px 24px;
+            border-radius: 25px;
+            font-size: 0.95rem;
+            font-weight: 500;
+            cursor: pointer;
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+
+        .btn-login {
+            background: transparent;
+            border: 1px solid #3b82f6;
+            /* Blue border */
+            color: #3b82f6;
+        }
+
+        .btn-login:hover {
+            background: rgba(59, 130, 246, 0.1);
+        }
+
+        .btn-signup {
+            background: linear-gradient(to right, #3b82f6, #60a5fa);
+            /* Blue gradient */
+            border: none;
+            color: white;
+            box-shadow: 0 4px 15px rgba(59, 130, 246, 0.3);
+        }
+
+        .btn-signup:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(59, 130, 246, 0.4);
+        }
+
+        /* ── Hero Section ───────────────────────── */
+        .hero {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
+            padding: 60px 80px;
+            flex: 1;
+        }
+
+        .hero-left {
+            width: 45%;
+        }
+
+        .hero-right {
+            width: 50%;
+            display: flex;
+            justify-content: flex-end;
+        }
+
+        .hero-left h1 {
+            font-size: clamp(3rem, 5vw, 4rem);
+            font-weight: 700;
+            line-height: 1.2;
+            color: #4dc2f8;
+            /* Light blue/teal */
+            margin-bottom: 24px;
+        }
+
+        .hero-left .tagline {
+            font-size: clamp(1.4rem, 2vw, 1.8rem);
+            font-weight: 700;
+            color: #fa316d;
+            /* Pink/red */
+            margin-bottom: 30px;
+        }
+
+        .hero-left p {
+            font-size: 1.05rem;
+            color: #b0b8c6;
+            line-height: 1.8;
+            max-width: 90%;
+            margin-bottom: 40px;
+        }
+
+        /* ── Illustration Container ──────────────── */
+        .illustration-box {
+            background-color: #f1f5f9;
+            border-radius: 8px;
+            padding: 30px;
+            width: 100%;
+            max-width: 600px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            position: relative;
+        }
+
+        /* Responsive */
+        @media (max-width: 968px) {
+            .hero {
+                flex-direction: column;
+                padding: 40px;
+                text-align: center;
+            }
+
+            .hero-left {
+                width: 100%;
+                margin-bottom: 40px;
+            }
+
+            .hero-left p {
+                max-width: 100%;
+                margin: 0 auto;
+            }
+
+            .hero-right {
+                width: 100%;
+                justify-content: center;
+            }
+        }
+
+        @media (max-width: 600px) {
+            nav {
+                padding: 16px 24px;
+                justify-content: center;
+            }
+
+            .hero {
+                padding: 30px 20px;
+            }
+
+            .illustration-box {
+                padding: 15px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- ── Navbar ─────────────────────────────────────────── -->
+    <nav>
+        <div class="logo">Phish<span>Shield</span></div>
+        <div class="nav-buttons">
+            <a href="login.html" class="btn-login">Login</a>
+            <a href="login.html" class="btn-signup" onclick="localStorage.setItem('startTab','signup')">Sign Up</a>
+        </div>
+    </nav>
+
+    <!-- ── Hero ──────────────────────────────────────────── -->
+    <section class="hero">
+        <div class="hero-left">
+            <h1>Phishing URL<br>Detection</h1>
+
+            <div class="tagline">"Stop. Scan. Then Click."</div>
+
+            <p>
+                Cyber attackers disguise malicious links to steal sensitive
+                information. Our intelligent phishing detection system
+                identifies fake websites and protects your digital identity
+                in real time.
+            </p>
+
+            <a href="index.html" class="btn-signup"
+                style="display:inline-block; margin-top: 10px; font-size: 1.1rem; padding: 12px 30px;">Start
+                Scanning</a>
+        </div>
+
+        <div class="hero-right">
+            <div class="illustration-box">
+                <!-- Inline SVG abstracting the illustration from the image -->
+                <svg width="100%" height="auto" viewBox="0 0 500 350" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <!-- Background elements -->
+                    <path d="M70 120 C 70 90, 110 90, 130 110 C 150 90, 190 90, 190 120 C 190 150, 70 150, 70 120 Z"
+                        fill="#60a5fa" opacity="0.8" />
+                    <path d="M125 110 L125 90 L115 90 L130 70 L145 90 L135 90 L135 110 Z" fill="white" />
+                    <circle cx="430" cy="80" r="15" fill="#e2e8f0" />
+                    <!-- Leaves -->
+                    <path d="M50 200 C 20 180, 20 130, 70 130 C 70 170, 60 190, 50 200 Z" fill="#cbd5e1"
+                        opacity="0.6" />
+                    <path d="M450 160 C 480 140, 480 90, 430 90 C 430 130, 440 150, 450 160 Z" fill="#cbd5e1"
+                        opacity="0.6" />
+                    <path d="M400 280 C 450 280, 480 230, 450 180 C 410 180, 390 220, 400 280 Z" fill="#e2e8f0" />
+                    <!-- Phone -->
+                    <rect x="290" y="70" width="120" height="230" rx="15" fill="#4765a0" />
+                    <rect x="300" y="80" width="100" height="190" rx="8" fill="#3b5384" />
+                    <circle cx="350" cy="285" r="5" fill="#94a3b8" />
+                    <!-- Grid in Phone -->
+                    <rect x="310" y="90" width="20" height="20" rx="4" fill="#6b86b8" opacity="0.3" />
+                    <rect x="340" y="90" width="20" height="20" rx="4" fill="#6b86b8" opacity="0.3" />
+                    <rect x="370" y="90" width="20" height="20" rx="4" fill="#6b86b8" opacity="0.3" />
+                    <rect x="310" y="120" width="20" height="20" rx="4" fill="#6b86b8" opacity="0.3" />
+                    <rect x="340" y="120" width="20" height="20" rx="4" fill="#6b86b8" opacity="0.3" />
+                    <rect x="370" y="120" width="20" height="20" rx="4" fill="#6b86b8" opacity="0.3" />
+                    <rect x="310" y="150" width="20" height="20" rx="4" fill="#6b86b8" opacity="0.3" />
+                    <rect x="340" y="150" width="20" height="20" rx="4" fill="#6b86b8" opacity="0.3" />
+                    <rect x="370" y="150" width="20" height="20" rx="4" fill="#6b86b8" opacity="0.3" />
+                    <rect x="310" y="180" width="20" height="20" rx="4" fill="#6b86b8" opacity="0.3" />
+                    <rect x="340" y="180" width="20" height="20" rx="4" fill="#6b86b8" opacity="0.3" />
+                    <rect x="370" y="180" width="20" height="20" rx="4" fill="#6b86b8" opacity="0.3" />
+                    <rect x="310" y="210" width="20" height="20" rx="4" fill="#6b86b8" opacity="0.3" />
+                    <rect x="340" y="210" width="20" height="20" rx="4" fill="#6b86b8" opacity="0.3" />
+                    <rect x="370" y="210" width="20" height="20" rx="4" fill="#6b86b8" opacity="0.3" />
+                    <!-- Shield -->
+                    <path
+                        d="M350 110 L300 130 L300 180 C 300 230, 350 260, 350 260 C 350 260, 400 230, 400 180 L400 130 Z"
+                        fill="#e2e8f0" stroke="#3b5384" stroke-width="6" />
+                    <path
+                        d="M350 120 L310 135 L310 175 C 310 215, 350 245, 350 245 C 350 245, 390 215, 390 175 L390 135 Z"
+                        fill="#60a5fa" />
+                    <!-- Green Checkmark -->
+                    <circle cx="350" cy="180" r="25" fill="#4ade80" />
+                    <path d="M335 180 L345 190 L365 170" stroke="white" stroke-width="6" stroke-linecap="round"
+                        stroke-linejoin="round" fill="none" />
+                    <!-- Large Lock -->
+                    <rect x="200" y="200" width="90" height="100" rx="15" fill="#60a5fa" />
+                    <path d="M220 200 L220 170 C 220 140, 270 140, 270 170 L270 200" fill="none" stroke="#2c3e50"
+                        stroke-width="20" stroke-linecap="round" />
+                    <circle cx="245" cy="240" r="12" fill="white" />
+                    <rect x="240" y="250" width="10" height="25" fill="white" />
+                    <!-- Key -->
+                    <circle cx="250" cy="275" r="15" fill="#3b5384" />
+                    <rect x="265" y="270" width="80" height="10" fill="#3b5384" />
+                    <rect x="320" y="280" width="10" height="15" fill="#3b5384" />
+                    <rect x="335" y="280" width="10" height="15" fill="#3b5384" />
+                    <!-- Person / User figure sitting -->
+                    <circle cx="170" cy="205" r="12" fill="#3b5384" />
+                    <path d="M150 265 C 150 235, 190 235, 190 265 Z" fill="#f59e0b" />
+                    <path d="M140 280 C 150 270, 190 270, 200 280 L200 290 L140 290 Z" fill="#1e3a8a" />
+                    <rect x="155" y="260" width="30" height="20" rx="2" fill="#60a5fa" />
+                    <!-- Ground Line -->
+                    <line x1="120" y1="300" x2="430" y2="300" stroke="#94a3b8" stroke-width="2" />
+                </svg>
+            </div>
+        </div>
+    </section>
+
+</body>
+
+</html>

@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login – PhishShield</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background-color: #121626;
+            /* Dark blue background */
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            overflow: hidden;
+            color: #ffffff;
+        }
+
+        .brand {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: white;
+            margin-bottom: 28px;
+            letter-spacing: 1px;
+        }
+
+        .brand span {
+            color: #3b82f6;
+        }
+
+        .container {
+            width: 390px;
+            background: #1e293b;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .form {
+            display: none;
+            padding: 45px 40px 38px;
+            color: white;
+            text-align: center;
+        }
+
+        .form.active {
+            display: block;
+        }
+
+        h2 {
+            margin-bottom: 28px;
+            font-size: 1.6rem;
+            font-weight: 700;
+            color: #4dc2f8;
+            /* Light blue/teal */
+        }
+
+        .input-group {
+            margin-bottom: 20px;
+            text-align: left;
+        }
+
+        .input-group label {
+            display: block;
+            font-size: 0.85rem;
+            color: #b0b8c6;
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+
+        input {
+            width: 100%;
+            padding: 12px 14px;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 8px;
+            background: rgba(255, 255, 255, 0.05);
+            color: white;
+            font-size: 0.95rem;
+            outline: none;
+            transition: border-color 0.3s, box-shadow 0.3s;
+        }
+
+        input::placeholder {
+            color: #64748b;
+        }
+
+        input:focus {
+            border-color: #3b82f6;
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2);
+        }
+
+        button.btn {
+            width: 100%;
+            padding: 14px;
+            margin-top: 10px;
+            border: none;
+            border-radius: 25px;
+            background: linear-gradient(to right, #3b82f6, #60a5fa);
+            color: white;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: transform 0.2s, box-shadow 0.3s;
+        }
+
+        button.btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(59, 130, 246, 0.4);
+        }
+
+        .switch-text {
+            margin-top: 24px;
+            font-size: 0.9rem;
+            color: #cbd5e1;
+        }
+
+        .switch-text span {
+            color: #3b82f6;
+            cursor: pointer;
+            font-weight: 600;
+        }
+
+        .switch-text span:hover {
+            text-decoration: underline;
+        }
+
+        .msg {
+            display: block;
+            min-height: 18px;
+            font-size: 0.85rem;
+            margin-top: 10px;
+            color: #ef4444;
+            /* red for errors */
+        }
+
+        .back-link {
+            margin-top: 24px;
+            font-size: 0.9rem;
+            color: #cbd5e1;
+        }
+
+        .back-link a {
+            color: #3b82f6;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .back-link a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="brand">Phish<span>Shield</span></div>
+
+    <div class="container">
+
+        <!-- Login Form -->
+        <div class="form login active" id="loginForm">
+            <h2>Welcome Back</h2>
+
+            <div class="input-group">
+                <label>Email Address</label>
+                <input type="email" id="email" placeholder="you@example.com">
+            </div>
+            <div class="input-group">
+                <label>Password</label>
+                <input type="password" id="password" placeholder="••••••••">
+            </div>
+
+            <span class="msg" id="loginMsg"></span>
+
+            <button class="btn" type="button" onclick="login()">Login</button>
+
+            <p class="switch-text">Don't have an account?
+                <span onclick="showSignUp()">Sign Up</span>
+            </p>
+        </div>
+
+        <!-- Sign Up Form -->
+        <div class="form sign-up" id="signupForm">
+            <h2>Create Account</h2>
+
+            <div class="input-group">
+                <label>Username</label>
+                <input type="text" id="signupUsername" placeholder="yourname">
+            </div>
+            <div class="input-group">
+                <label>Email Address</label>
+                <input type="email" id="signupEmail" placeholder="you@example.com">
+            </div>
+            <div class="input-group">
+                <label>Password</label>
+                <input type="password" id="signupPassword" placeholder="••••••••">
+            </div>
+
+            <span class="msg" id="signupMsg"></span>
+
+            <button class="btn" type="button" onclick="signUp()">Create Account</button>
+
+            <p class="switch-text">Already have an account?
+                <span onclick="showLogin()">Login</span>
+            </p>
+        </div>
+
+    </div>
+
+    <p class="back-link">← <a href="main2.html">Back to Home</a></p>
+
+    <script src="login.js"></script>
+</body>
+
+</html>

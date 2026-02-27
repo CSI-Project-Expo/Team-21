@@ -1,0 +1,288 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', Arial, sans-serif;
+}
+
+body {
+    min-height: 100vh;
+    background-color: #121626;
+    /* Dark blue background */
+    display: flex;
+    flex-direction: column;
+    color: #ffffff;
+}
+
+/* ── Navbar ──────────────────────────────────────────── */
+.navbar {
+    display: flex;
+    justify-content: flex-end;
+    /* right-align items */
+    align-items: center;
+    padding: 24px 60px;
+    background: transparent;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.nav-brand {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: white;
+    letter-spacing: 1px;
+    margin-right: auto;
+    /* push to left */
+}
+
+.nav-brand span {
+    color: #3b82f6;
+}
+
+.nav-right {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.nav-user {
+    color: #b0b8c6;
+    font-size: 0.95rem;
+    font-weight: 500;
+}
+
+.logout-btn {
+    padding: 8px 24px;
+    border-radius: 25px;
+    border: 1px solid #3b82f6;
+    background: transparent;
+    color: #3b82f6;
+    font-size: 0.95rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.logout-btn:hover {
+    background: rgba(59, 130, 246, 0.1);
+}
+
+/* ── Main Split Layout ───────────────────────────────── */
+.container {
+    flex: 1;
+    display: flex;
+    padding: 60px 80px;
+    gap: 40px;
+    align-items: center;
+}
+
+/* Left Section - Scanner */
+.left {
+    width: 50%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+/* Right Section - Info panel */
+.right {
+    width: 50%;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.right-content {
+    background-color: #f1f5f9;
+    border-radius: 8px;
+    padding: 50px 40px;
+    width: 100%;
+    max-width: 600px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+    color: #1e293b;
+    /* Dark text for light background */
+}
+
+.right-content h1 {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+    line-height: 1.2;
+    color: #0f172a;
+    font-weight: 700;
+}
+
+.right-content p {
+    font-size: 1.05rem;
+    line-height: 1.8;
+    color: #475569;
+    margin-bottom: 24px;
+}
+
+.tips {
+    list-style: none;
+    text-align: left;
+    color: #334155;
+    font-size: 1rem;
+    line-height: 2;
+}
+
+.tips li {
+    margin-bottom: 8px;
+}
+
+/* ── Form Box ────────────────────────────────────────── */
+.form-box {
+    width: 100%;
+    max-width: 500px;
+}
+
+.form-box h2 {
+    margin-bottom: 8px;
+    font-size: clamp(2.5rem, 4vw, 3.5rem);
+    color: #4dc2f8;
+    /* Light blue/teal */
+    font-weight: 700;
+    line-height: 1.2;
+}
+
+.subtitle {
+    color: #fa316d;
+    /* Pink/red */
+    font-size: 1.2rem;
+    margin-bottom: 30px;
+    font-weight: 600;
+}
+
+/* ── Input ───────────────────────────────────────────── */
+.input-box {
+    margin-bottom: 20px;
+}
+
+.input-box input {
+    width: 100%;
+    padding: 16px 20px;
+    background: #1e293b;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 12px;
+    color: white;
+    outline: none;
+    font-size: 1rem;
+    transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+.input-box input::placeholder {
+    color: #64748b;
+}
+
+.input-box input:focus {
+    border-color: #3b82f6;
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2);
+}
+
+/* ── Scan Button ─────────────────────────────────────── */
+.btn {
+    width: 100%;
+    padding: 16px;
+    border: none;
+    border-radius: 25px;
+    background: linear-gradient(to right, #3b82f6, #60a5fa);
+    color: white;
+    font-weight: 600;
+    cursor: pointer;
+    font-size: 1.1rem;
+    transition: transform 0.2s, box-shadow 0.3s;
+}
+
+.btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(59, 130, 246, 0.4);
+}
+
+/* ── Result Box ──────────────────────────────────────── */
+#result {
+    margin-top: 24px;
+    padding: 18px 20px;
+    border-radius: 12px;
+    min-height: 60px;
+    font-weight: 600;
+    font-size: 1.1rem;
+    line-height: 1.6;
+    text-align: center;
+    display: none;
+    transition: all 0.3s ease;
+}
+
+#result.scanning {
+    display: block;
+    background: #1e293b;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    color: #cbd5e1;
+}
+
+#result.safe {
+    display: block;
+    background: rgba(34, 197, 94, 0.15);
+    border: 1px solid #22c55e;
+    color: #4ade80;
+}
+
+#result.danger {
+    display: block;
+    background: rgba(239, 68, 68, 0.15);
+    border: 1px solid #ef4444;
+    color: #f87171;
+}
+
+#result.warning {
+    display: block;
+    background: rgba(245, 158, 11, 0.15);
+    border: 1px solid #f59e0b;
+    color: #fbbf24;
+}
+
+#result small {
+    display: block;
+    font-size: 0.85em;
+    margin-top: 6px;
+    opacity: 0.9;
+    font-weight: 400;
+    color: inherit;
+}
+
+/* ── Responsive ──────────────────────────────────────── */
+@media (max-width: 968px) {
+    .container {
+        flex-direction: column;
+        padding: 40px;
+        text-align: center;
+    }
+
+    .left,
+    .right {
+        width: 100%;
+        justify-content: center;
+    }
+
+    .left {
+        margin-bottom: 40px;
+    }
+
+    .navbar {
+        padding: 16px 24px;
+    }
+}
+
+@media (max-width: 600px) {
+    .container {
+        padding: 30px 20px;
+    }
+
+    .right-content {
+        padding: 30px 20px;
+    }
+
+    .form-box h2 {
+        font-size: 2.2rem;
+    }
+}
